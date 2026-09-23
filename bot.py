@@ -471,3 +471,19 @@ async def lyrics_cmd(ctx):
     await ctx.send(f"📜 Check out lyrics for **{title}** online or via Genius search! 🎤✨")
 
 bot.run(os.getenv('TOKEN'))
+# --- DUMMY WEB SERVER FOR RENDER ---
+async def handle(request):
+    return web.Response(text="Music Bilota is online and streaming! 🎶")
+
+async def web_server():
+    app = web.Application()
+    app.router.add_get("/", handle)
+    runner = web.AppRunner(app)
+    await runner.setup()
+    port = int(os.environ.get("PORT", 8080))
+    site = web.TCPSite(runner, "0.0.0.0", port)
+    await site.start()
+
+@bot.event
+async def setup_hook():
+    bot.loop.create_task(web_server())
