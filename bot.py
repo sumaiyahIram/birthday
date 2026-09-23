@@ -470,4 +470,4 @@ async def lyrics_cmd(ctx):
     title = getattr(bot, 'last_played_title', 'Unknown Track')
     await ctx.send(f"📜 Check out lyrics for **{title}** online or via Genius search! 🎤✨")
 
-bot.run(os.getenv('MTU1MTI5OTE1NTc4NjIwMzMxOA.GvWhny.JWILeZObCEJxmSSqQY67hbjUDqFDFXjZlvxPIA'))
+bot.run(os.getenv('TOKEN'))
